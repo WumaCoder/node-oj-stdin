@@ -3,7 +3,7 @@ export function ListNode(val) {
   this.next = null;
 }
 
-export function toNodeString(node) {
+export function toStrNode(node) {
   if (!node) {
     return "";
   }
