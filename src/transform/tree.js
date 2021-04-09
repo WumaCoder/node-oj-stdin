@@ -1,12 +1,12 @@
 import { toArrNum } from "../../src/transform/array";
 
-export function BTreeNode(val, left = null, right = null) {
+export function TreeNode(val, left = null, right = null) {
   this.val = val;
   this.left = left;
   this.right = right;
 }
 
-export function toBTree(str) {
+export function toTree(str) {
   const arr = toArrNum(str);
 
   const headVal = arr.shift();
@@ -14,26 +14,26 @@ export function toBTree(str) {
   if (headVal === null || headVal === undefined) {
     return null;
   }
-  const root = new BTreeNode(headVal);
+  const root = new TreeNode(headVal);
   const queue = [root];
 
   while (queue.length) {
     const node = queue.shift();
     const val1 = arr.shift();
     if (val1 !== null && val1 !== undefined) {
-      node.left = new BTreeNode(val1);
+      node.left = new TreeNode(val1);
       queue.push(node.left);
     }
     const val2 = arr.shift();
     if (val2 !== null && val2 !== undefined) {
-      node.right = new BTreeNode(val2);
+      node.right = new TreeNode(val2);
       queue.push(node.right);
     }
   }
 
   return root;
 }
-export function toStrBTree(root) {
+export function toStrTree(root) {
   if (!root) {
     return "";
   }

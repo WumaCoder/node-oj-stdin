@@ -1,6 +1,6 @@
-import { toBTree } from "src/transform/tree";
+import { toTree } from "src/transform/tree";
 import { getLine } from "./base";
 
-export function getBTree() {
-  return getLine().then((line) => toBTree(line));
+export function getTree() {
+  return getLine().then((line) => toTree(line));
 }
