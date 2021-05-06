@@ -8,6 +8,12 @@
     "dev": "rollup -c -w",
     "test": "jest --detectOpenHandles"
   },
+  "repository": {
+    "url": "https://github.com/WumaCoder/node-oj-stdin"
+  },
+  "keywords": [
+    "oj"
+  ],
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "core-js": "3"
