@@ -5,35 +5,32 @@ const rl = createInterface({
   output: process.stdout,
 });
 
-const buffer = [];
-var getLineCount = 0;
+const bufferLine = [];
+const EOF = null;
 
 rl.on("line", function lineEvent(v) {
-  buffer.push(v);
+  bufferLine.push(v);
 });
 
 rl.on("close", function closeEvent() {
-  setImmediate(function closeProcess() {
-    if (buffer.length === 0 || getLineCount === 0) {
-      process.exit(0);
-    } else {
-      setImmediate(closeProcess);
-    }
-  });
+  bufferLine.push(EOF);
 });
 
-export function getLine() {
-  getLineCount++;
+export function waitInput() {
   return new Promise((resolve) => {
-    setImmediate(function run() {
-      if (buffer.length !== 0) {
-        resolve(buffer.shift());
-        getLineCount--;
+    setImmediate(function loop() {
+      if (bufferLine.length) {
+        resolve();
       } else {
-        setImmediate(run);
+        setImmediate(loop);
       }
     });
   });
+}
+
+export async function getLine() {
+  await waitInput();
+  return bufferLine.shift();
 }
 
 export function close() {
