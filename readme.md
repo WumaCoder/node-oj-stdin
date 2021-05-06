@@ -5,7 +5,7 @@
 ## 安装
 
 ```bash
-npm i -g node-oj-stdin
+npm i node-oj-stdin
 ```
 
 ## 使用
